@@ -1,0 +1,45 @@
+
+<html>
+
+<head>  
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<h1 style = "color:red; ingredientHero </h1>
+<p style="font-size:6vw;">ingredientHero</p>
+ 
+</head>  
+<body>  
+  
+<label "Ingredient Hero" </label>
+<label for="Ingredients"> </label>
+
+<h2 style="font-size:4vw;">Enter a list of ingredients, separated by commas</h2>
+
+
+
+<input type="text" id="ingredients" name="ingredients">
+<button type="submit" id="submit">Generate Recipe</button>
+<div id="result"></div>
+
+<script>
+function main() {
+  let button = document.querySelector('#submit');
+  let inputForm = document.querySelector('#ingredients');
+  let resultSection = document.querySelector('#result');
+  console.log(button)
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    // use fetch to query our openAI endpoint
+    fetch('https://raimaabsara.autocode.dev/watermelon-lover@dev/', {
+      method: 'POST',
+      body: JSON.stringify({ingredients: inputForm.value})
+    })
+    .then((response) => response.json())
+    .then((result) => {
+      resultSection.innerHTML = result;
+    });
+  });
+  
+}
+document.addEventListener('DOMContentLoaded', main);
+</script>
+</html>
